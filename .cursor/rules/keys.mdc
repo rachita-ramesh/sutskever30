@@ -1,0 +1,6 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+always have openai keys or any api keys in a .env file or .env.local file only and gitignore these files

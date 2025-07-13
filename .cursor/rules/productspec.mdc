@@ -1,0 +1,144 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+Product Specification: Sutskever30 Learning Platform
+Context
+Ilya Sutskever famously shared a curated reading list with John Carmack, containing foundational and cutting-edge papers in ML/AI. These papers are often dense, technical, and inaccessible to learners at different levels. Our platform bridges this gap by making complex research papers comprehensible to anyone, regardless of their background.
+Vision
+Primary Goal: Transform dense academic papers into accessible learning resources that anyone can understand at their own level.
+Core Principle: Accessibility over completion. Users should be able to deeply understand any individual paper, not necessarily progress through all papers.
+User Personas
+1. Curious Beginner
+Heard about AI concepts, wants to understand the fundamentals
+Needs intuitive explanations and visual aids
+May not have strong math/CS background
+2. Intermediate Learner
+Has some ML knowledge, wants to understand specific techniques
+Comfortable with basic math, needs concept bridges
+Looking to deepen understanding of particular areas
+3. Technical Implementer
+Experienced developer/researcher
+Needs technical details, proofs, implementation guidance
+Wants to build on or reference the work
+User Flow
+Primary Journey: "I want to understand [specific paper]"
+
+1. Discover Paper
+   ├── Search by topic/technique
+   ├── Browse paper grid
+   └── Direct link/reference
+
+2. Choose Understanding Level
+   ├── "Explain the big idea" (Visual/intuitive)
+   ├── "Show me how it works" (Conceptual/mathematical)
+   └── "I want to build this" (Technical/implementation)
+
+3. Learn at Chosen Level
+   ├── Switch between levels anytime
+   ├── Access related context when needed
+   └── Use interactive elements/demos
+
+4. Optional: Explore Related Concepts
+   ├── Referenced papers (context, not sequence)
+   ├── Related techniques
+   └── Implementation resources
+
+Core Features
+1. Multi-Level Paper Explanations
+a. Intuitive Level: Plain English, analogies, visual diagrams
+b. Conceptual Level: Mathematical concepts, step-by-step reasoning
+c. Technical Level: Full implementation details, proofs, code
+2. Adaptive Content Rendering
+a. Real-time level switching via tabs/toggles
+b. Progressive disclosure of complexity
+c. Alternative explanations for difficult concepts
+3. Interactive Learning Elements
+a. Code examples and runnable demos
+b. Interactive visualizations
+c. Mathematical notation with hover explanations
+d. "Try it yourself" sections
+4. Smart Context & Navigation
+a. Contextual glossary
+b. Cross-references with optional deep-dives
+c. "Prerequisites" suggestions (not requirements)
+d. Related papers grouped by concept
+5. Accessible Design
+a. Mobile-responsive layout
+b. Clean, distraction-free reading experience
+c. High-contrast, accessible typography
+d. Fast loading times
+Technical Architecture
+Tech Stack
+a. Frontend: Next.js 14+ with App Router
+b. Language: TypeScript for type safety
+c. Styling: Tailwind CSS + shadcn/ui components
+d. Content: MDX for rich, interactive content
+e. Deployment: Vercel for optimal Next.js performance
+f. Search: Simple client-side search with Fuse.js
+Content Structure
+/content/papers/
+├── [paper-slug]/
+│   ├── metadata.json
+│   ├── intuitive.mdx
+│   ├── conceptual.mdx
+│   ├── technical.mdx
+│   └── interactive/
+│       ├── demo.tsx
+│       └── visualizations.tsx
+
+Page Structure
+/
+├── / (landing page - paper grid)
+├── /papers/[slug] (individual paper)
+├── /search (search results)
+└── /topics/[topic] (papers by topic)
+
+Content Strategy
+Paper Selection Criteria
+a. All papers from Ilya's original list
+b. Organized by foundational concepts (not chronological)
+c. Each paper treated as standalone learning module
+
+Content Creation Process
+1. Research Phase: Understand paper thoroughly
+2. Explanation Design: Create explanations for each level
+3. Interactive Elements: Build demos/visualizations where helpful
+4. Cross-Reference: Link to related concepts
+5. Review: Ensure accessibility across all levels
+
+Success Metrics
+Primary Metrics
+a. Comprehension: Users can explain concepts after reading
+b. Engagement: Time spent on individual papers
+c. Accessibility: Usage across different skill levels
+
+Secondary Metrics
+a. Discovery: How users find papers
+b. Level Usage: Distribution across difficulty levels
+d. Cross-References: Usage of related paper links
+
+MVP Scope
+Phase 1: Core Platform
+[ ] Landing page with paper grid
+[ ] 3-5 foundational papers with full multi-level content
+[ ] Basic search functionality
+[ ] Responsive design
+Phase 2: Enhanced Experience
+[ ] Interactive visualizations
+[ ] Advanced search and filtering
+[ ] Topic-based organization
+[ ] Performance optimizations
+Phase 3: Complete Collection
+[ ] All papers from Ilya's list
+[ ] Advanced interactive elements
+[ ] Community features (optional)
+[ ] Mobile app (optional)
+
+Design Principles
+1. Clarity Over Cleverness: Simple, direct explanations
+2. Progressive Disclosure: Information revealed as needed
+3. Multiple Pathways: Different ways to understand same concept
+4. No Barriers: Accessible without signup or prerequisites
+5. Respect User Intent: Let users choose their depth level
