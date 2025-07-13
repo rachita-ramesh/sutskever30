@@ -41,7 +41,6 @@ export default function HomePage() {
         <ChatInterface
           concept={selectedConcept}
           onBack={handleBack}
-          onSwitchToConcept={handleSwitchToConcept}
           onToggleSidebar={toggleSidebar}
         />
       ) : (
