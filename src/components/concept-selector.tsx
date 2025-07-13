@@ -85,7 +85,7 @@ export function ConceptSelector({ onSelectConcept, onToggleSidebar }: ConceptSel
             
             <blockquote className="max-w-3xl mx-auto">
               <p className="text-xl text-gray-400 mb-4 italic leading-relaxed">
-                “If you really learn all of these, you’ll know 90 percent of what matters today.”
+                “If you really learn all of these, you&apos;ll know 90 percent of what matters today.”
               </p>
               <footer className="text-gray-500">— Ilya Sutskever to John Carmack</footer>
             </blockquote>

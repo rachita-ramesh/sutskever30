@@ -20,7 +20,7 @@ export function Sidebar({ isOpen, onClose, concepts, onSelectConcept, currentCon
       <div className={`fixed top-0 left-0 h-full w-80 bg-gray-900 border-r border-gray-800 z-50 transform transition-transform ease-in-out duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="flex flex-col h-full">
           <div className="flex items-center justify-between p-4 border-b border-gray-800 flex-shrink-0">
-            <h2 className="text-lg font-semibold text-white">Ilya's Reading List</h2>
+            <h2 className="text-lg font-semibold text-white">Ilya&apos;s Reading List</h2>
             <button onClick={onClose} className="p-1 text-gray-400 hover:text-white hover:bg-gray-700 rounded-md">
               <X className="h-5 w-5" />
             </button>

@@ -7,11 +7,10 @@ import { Send, ArrowLeft, ExternalLink, BookOpen, Brain } from "lucide-react";
 interface ChatInterfaceProps {
   concept: Concept;
   onBack: () => void;
-  onSwitchToConcept: (concept: Concept) => void;
   onToggleSidebar: () => void;
 }
 
-export function ChatInterface({ concept, onBack, onSwitchToConcept, onToggleSidebar }: ChatInterfaceProps) {
+export function ChatInterface({ concept, onBack, onToggleSidebar }: ChatInterfaceProps) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
