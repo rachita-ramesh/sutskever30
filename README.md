@@ -1,4 +1,4 @@
-# Sutskever30 - AI Learning Platform
+# AI Concepts by Ilya Sutskever: A Chat-Based Tutor
 
 An interactive AI tutor that makes Ilya Sutskever's essential AI reading list accessible through personalized chat conversations.
 
