@@ -1,4 +1,4 @@
-# AI Concepts by Ilya Sutskever: A Chat-Based Tutor
+# AI Concepts by Ilya Sutskever
 
 An interactive AI tutor that makes Ilya Sutskever's essential AI reading list accessible through personalized chat conversations.
 
