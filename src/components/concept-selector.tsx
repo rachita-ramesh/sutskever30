@@ -76,7 +76,7 @@ export function ConceptSelector({ onSelectConcept, onToggleSidebar }: ConceptSel
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-gray-900 border border-gray-800 rounded-full mb-8">
               <Sparkles className="h-4 w-4 text-purple-400" />
-              <span className="text-white">Ilya's Reading List</span>
+              <span className="text-white">Ilya&apos;s Reading List</span>
             </div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6">
