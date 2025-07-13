@@ -8,13 +8,6 @@ An interactive AI tutor that makes Ilya Sutskever's essential AI reading list ac
 - **Modern Design**: A clean, minimalist interface that is responsive and works beautifully on all devices.
 - **Smart Learning**: Concepts range from beginner to advanced. Switch topics anytime and access direct links to original research papers.
 
-## 🚀 Tech Stack
-
-- **Frontend**: Next.js 14
-- **UI**: Tailwind CSS
-- **AI**: OpenAI GPT-4o-mini
-- **Language**: TypeScript
-
 ## 🛠️ Getting Started
 
 1.  **Clone and install:**
@@ -40,7 +33,12 @@ An interactive AI tutor that makes Ilya Sutskever's essential AI reading list ac
 
 ## 📖 Available Concepts
 
-The AI tutor can teach you about a curated list of foundational, intermediate, and advanced AI concepts, including Backpropagation, CNNs, LSTMs, Transformers, GANs, and more.
+The AI tutor can teach you about a curated list of concepts from Ilya Sutskever's reading list, spanning topics like:
+-   **NLP**: Attention, Transformers, and Language Models.
+-   **Computer Vision**: AlexNet, Residual Learning, and Dilated Convolutions.
+-   **Neural Networks**: Foundational ideas, Regularization, and advanced architectures like GNNs.
+-   **Generative Models**: VAEs and other methods for creative AI.
+-   **Theory & Blog Posts**: Deep dives into the principles of AI and complexity.
 
 ## 🤖 How It Works
 
