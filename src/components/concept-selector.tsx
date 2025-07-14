@@ -61,8 +61,12 @@ export function ConceptSelector({ onSelectConcept, onToggleSidebar }: ConceptSel
 
       <header className="fixed top-0 left-0 right-0 z-20 p-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          {/* This space is intentionally left blank */}
-          <div></div>
+          <button
+            onClick={onToggleSidebar}
+            className="p-3 bg-gray-900/50 border border-gray-800 rounded-lg text-white hover:bg-gray-800 hover:border-gray-700 transition-colors backdrop-blur-sm"
+          >
+            <BookOpen className="h-5 w-5" />
+          </button>
         </div>
       </header>
       

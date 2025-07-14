@@ -10,11 +10,7 @@ interface ChatInterfaceProps {
   onToggleSidebar: () => void;
 }
 
-export function ChatInterface({
-  concept,
-  onBack,
-  onToggleSidebar,
-}: ChatInterfaceProps) {
+export function ChatInterface({ concept, onBack, onToggleSidebar }: ChatInterfaceProps) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -127,6 +123,12 @@ export function ChatInterface({
           <div className="flex items-center justify-between gap-4">
             {/* Left Side */}
             <div className="flex-shrink-0 flex items-center gap-1 sm:gap-2">
+              <button
+                onClick={onToggleSidebar}
+                className="p-2 hover:bg-gray-800 rounded-lg transition-colors text-white"
+              >
+                <BookOpen className="h-5 w-5" />
+              </button>
               <button
                 onClick={onBack}
                 className="p-2 hover:bg-gray-800 rounded-lg transition-colors text-white"

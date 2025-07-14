@@ -6,7 +6,6 @@ import { ConceptSelector } from "@/components/concept-selector";
 import { ChatInterface } from "@/components/chat-interface";
 import { Sidebar } from "@/components/sidebar";
 import { concepts as allConcepts } from "@/data/concepts";
-import { SidebarToggle } from "@/components/sidebar-toggle";
 
 export default function HomePage() {
   const [selectedConcept, setSelectedConcept] = useState<Concept | null>(null);
@@ -36,9 +35,8 @@ export default function HomePage() {
         onClose={() => setIsSidebarOpen(false)}
         concepts={allConcepts}
         onSelectConcept={handleSwitchToConcept}
-        currentConceptId={selectedConcept?.id || ""}
+        currentConceptId={selectedConcept?.id || ''}
       />
-      {!isSidebarOpen && <SidebarToggle onToggle={toggleSidebar} />}
       {selectedConcept ? (
         <ChatInterface
           concept={selectedConcept}
@@ -46,8 +44,8 @@ export default function HomePage() {
           onToggleSidebar={toggleSidebar}
         />
       ) : (
-        <ConceptSelector
-          onSelectConcept={handleSelectConcept}
+        <ConceptSelector 
+          onSelectConcept={handleSelectConcept} 
           onToggleSidebar={toggleSidebar}
         />
       )}
