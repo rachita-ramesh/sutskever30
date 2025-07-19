@@ -165,32 +165,35 @@ export function ChatInterface({ concept, onBack, onToggleSidebar }: ChatInterfac
         <div className="max-w-4xl mx-auto px-6 py-8">
           <div className="space-y-6">
             {messages.map((message) => (
-              <div key={message.id} className="flex gap-4">
-                {message.role === "assistant" && (
+              <div
+                key={message.id}
+                className={`flex items-start gap-4 ${
+                  message.role === 'user' ? 'justify-end' : 'justify-start'
+                }`}
+              >
+                {message.role === 'assistant' && (
                   <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-purple-500 to-blue-500 rounded-lg flex items-center justify-center mt-1">
                     <Brain className="h-4 w-4 text-white" />
                   </div>
                 )}
-                
-                <div className={`flex-1 ${message.role === "user" ? "ml-12" : ""}`}>
-                  <div className={`${
-                    message.role === "user" 
-                      ? "bg-gray-800 border border-gray-700" 
-                      : "bg-gray-900 border border-gray-800"
-                  } rounded-xl p-4`}>
-                    <div className="prose prose-invert prose-p:text-gray-100 prose-headings:text-white prose-strong:text-white max-w-none">
-                      <ReactMarkdown>{message.content}</ReactMarkdown>
-                    </div>
+
+                <div
+                  className={`max-w-[85%] sm:max-w-[75%] rounded-xl p-4 ${
+                    message.role === 'user'
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-gray-900 border border-gray-800'
+                  }`}
+                >
+                  <div className="prose prose-invert max-w-none">
+                    <ReactMarkdown>{message.content}</ReactMarkdown>
                   </div>
-                  
-                  {message.role === "user" && (
-                    <div className="flex items-center justify-end mt-2">
-                      <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
-                        <span className="text-black text-xs font-medium">You</span>
-                      </div>
-                    </div>
-                  )}
                 </div>
+
+                {message.role === 'user' && (
+                  <div className="flex-shrink-0 w-8 h-8 bg-white rounded-full flex items-center justify-center mt-1">
+                    <span className="text-black text-xs font-medium">You</span>
+                  </div>
+                )}
               </div>
             ))}
             
