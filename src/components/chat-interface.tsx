@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Message, Concept } from "@/types/chat";
 import { Send, ArrowLeft, ExternalLink, BookOpen, Brain } from "lucide-react";
+import ReactMarkdown from "react-markdown";
 
 interface ChatInterfaceProps {
   concept: Concept;
@@ -177,14 +178,8 @@ export function ChatInterface({ concept, onBack, onToggleSidebar }: ChatInterfac
                       ? "bg-gray-800 border border-gray-700" 
                       : "bg-gray-900 border border-gray-800"
                   } rounded-xl p-4`}>
-                    <div className="prose prose-gray max-w-none">
-                      {message.content.split('\n').map((paragraph, pIndex) => (
-                        paragraph.trim() && (
-                          <p key={pIndex} className="mb-3 last:mb-0 text-gray-100 leading-relaxed">
-                            {paragraph}
-                          </p>
-                        )
-                      ))}
+                    <div className="prose prose-invert prose-p:text-gray-100 prose-headings:text-white prose-strong:text-white max-w-none">
+                      <ReactMarkdown>{message.content}</ReactMarkdown>
                     </div>
                   </div>
                   
