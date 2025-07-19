@@ -8,8 +8,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Sutskever30 - Learn AI with an AI Tutor",
-  description: "Interactive AI tutor that teaches concepts from Ilya Sutskever's essential reading list. Choose a topic and start learning in a personalized chat conversation.",
+  title: "AI Concepts by Ilya Sutskever: A Chat-Based Tutor",
+  description: "An interactive AI tutor that makes Ilya Sutskever's essential AI reading list accessible through personalized chat conversations.",
   keywords: ["AI", "Machine Learning", "Deep Learning", "Sutskever", "AI Tutor", "Interactive Learning", "Chat", "Education"],
 };
 
