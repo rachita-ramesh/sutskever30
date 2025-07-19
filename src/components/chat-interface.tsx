@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Message, Concept } from "@/types/chat";
-import { Send, ArrowLeft, ExternalLink, BookOpen, Brain } from "lucide-react";
+import { Send, ArrowLeft, ExternalLink, BookOpen } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 
 interface ChatInterfaceProps {
