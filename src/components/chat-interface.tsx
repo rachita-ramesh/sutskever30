@@ -163,24 +163,18 @@ export function ChatInterface({ concept, onBack, onToggleSidebar }: ChatInterfac
       {/* Messages Container */}
       <div className="flex-1 overflow-y-auto">
         <div className="max-w-4xl mx-auto px-6 py-8">
-          <div className="space-y-6">
+          <div className="space-y-4">
             {messages.map((message) => (
               <div
                 key={message.id}
-                className={`flex items-start gap-4 ${
+                className={`flex ${
                   message.role === 'user' ? 'justify-end' : 'justify-start'
                 }`}
               >
-                {message.role === 'assistant' && (
-                  <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-purple-500 to-blue-500 rounded-lg flex items-center justify-center mt-1">
-                    <Brain className="h-4 w-4 text-white" />
-                  </div>
-                )}
-
                 <div
                   className={`max-w-[85%] sm:max-w-[75%] rounded-xl p-4 ${
                     message.role === 'user'
-                      ? 'bg-blue-600 text-white'
+                      ? 'bg-gray-800'
                       : 'bg-gray-900 border border-gray-800'
                   }`}
                 >
@@ -188,30 +182,19 @@ export function ChatInterface({ concept, onBack, onToggleSidebar }: ChatInterfac
                     <ReactMarkdown>{message.content}</ReactMarkdown>
                   </div>
                 </div>
-
-                {message.role === 'user' && (
-                  <div className="flex-shrink-0 w-8 h-8 bg-white rounded-full flex items-center justify-center mt-1">
-                    <span className="text-black text-xs font-medium">You</span>
-                  </div>
-                )}
               </div>
             ))}
             
             {isLoading && (
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-purple-500 to-blue-500 rounded-lg flex items-center justify-center mt-1">
-                  <Brain className="h-4 w-4 text-white" />
-                </div>
-                <div className="flex-1">
-                  <div className="bg-gray-900 border border-gray-800 rounded-xl p-4">
-                    <div className="flex items-center gap-3">
-                      <div className="flex gap-1">
-                        <div className="w-2 h-2 bg-gray-500 rounded-full animate-pulse"></div>
-                        <div className="w-2 h-2 bg-gray-500 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-                        <div className="w-2 h-2 bg-gray-500 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
-                      </div>
-                      <span className="text-gray-400 text-sm">thinking...</span>
+              <div className="flex justify-start">
+                <div className="bg-gray-900 border border-gray-800 rounded-xl p-4">
+                  <div className="flex items-center gap-3">
+                    <div className="flex gap-1">
+                      <div className="w-2 h-2 bg-gray-500 rounded-full animate-pulse"></div>
+                      <div className="w-2 h-2 bg-gray-500 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+                      <div className="w-2 h-2 bg-gray-500 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
                     </div>
+                    <span className="text-gray-400 text-sm">thinking...</span>
                   </div>
                 </div>
               </div>
