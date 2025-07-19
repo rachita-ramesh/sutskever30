@@ -122,7 +122,7 @@ export const concepts: Concept[] = [
     id: "annotated-transformer",
     name: "The Annotated Transformer",
     description: "A line-by-line implementation of the 'Attention Is All You Need' paper.",
-    category: "Blog Post",
+    category: "NLP",
     difficulty: "intermediate",
     paperReference: {
       title: "The Annotated Transformer",
@@ -135,7 +135,7 @@ export const concepts: Concept[] = [
     id: "complexodynamics",
     name: "The First Law of Complexodynamics",
     description: "A blog post exploring why the complexity of physical systems seems to increase, peak, and then decrease over time.",
-    category: "Blog Post",
+    category: "Complexity Science",
     difficulty: "advanced",
     paperReference: {
       title: "The First Law of Complexodynamics",
@@ -148,7 +148,7 @@ export const concepts: Concept[] = [
     id: "coffee-automaton",
     name: "The Coffee Automaton",
     description: "An attempt to quantify the rise and fall of complexity in closed systems using a cellular automaton model.",
-    category: "Theory",
+    category: "Complexity Science",
     difficulty: "advanced",
     paperReference: {
       title: "Quantifying the Rise and Fall of Complexity in Closed Systems: The Coffee Automaton",
