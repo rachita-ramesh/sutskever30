@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Sutskever — Interactive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0d14;
+    --bg-2: #10131d;
+    --ink: #ecebe4;
+    --ink-dim: #8b8a82;
+    --ink-faint: #4f4e48;
+    --line: #1e2230;
+    --line-2: #2a2f42;
+    --teal: oklch(0.82 0.14 180);
+    --amber: oklch(0.82 0.14 80);
+    --rose: oklch(0.74 0.16 25);
+    --iris: oklch(0.72 0.16 290);
+    --lime: oklch(0.86 0.18 130);
+    --sky: oklch(0.78 0.12 230);
+  }
+  html, body { background: var(--bg); color: var(--ink); margin:0; padding:0; font-family: "Space Grotesk", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  .serif { font-family: "Instrument Serif", serif; font-style: italic; }
+  .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+  .hairline { border-color: var(--line); }
+  .dotgrid {
+    background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
+  .noise::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 3px 3px;
+    pointer-events: none;
+  }
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--line-2); border-radius: 6px; }
+  ::-webkit-scrollbar-thumb:hover { background: #3a405a; }
+
+  /* buttons */
+  button { font-family: inherit; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 10px; border-radius: 999px;
+    font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase;
+    border: 1px solid var(--line-2); color: var(--ink-dim);
+  }
+  .chip.on { color: var(--ink); border-color: var(--ink-dim); }
+  .glow-teal { box-shadow: 0 0 0 1px color-mix(in oklch, var(--teal) 40%, transparent), 0 10px 40px -20px color-mix(in oklch, var(--teal) 80%, transparent); }
+
+  /* animations */
+  @keyframes pulse-soft { 0%,100%{opacity:1} 50%{opacity:.55} }
+  @keyframes slide-up { from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:translateY(0)} }
+  @keyframes fade-in { from{opacity:0} to{opacity:1} }
+  .anim-slide-up { animation: slide-up 360ms cubic-bezier(.2,.8,.2,1) both; }
+  .anim-fade-in { animation: fade-in 400ms ease both; }
+  .pulse-soft { animation: pulse-soft 2.4s ease-in-out infinite; }
+
+  /* ticker of thin lines */
+  .bar {
+    display:inline-block; height:1px; background: var(--ink-faint); vertical-align: middle;
+  }
+
+  /* range */
+  input[type=range] { -webkit-appearance: none; appearance: none; height: 2px; background: var(--line-2); border-radius: 2px; outline: none; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 14px; height: 14px; background: var(--amber); border-radius: 50%; cursor: pointer; }
+  input[type=range]::-moz-range-thumb { width: 14px; height: 14px; background: var(--amber); border-radius: 50%; cursor: pointer; border: none; }
+
+  /* focus */
+  :focus-visible { outline: 1px solid var(--amber); outline-offset: 2px; }
+</style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script>
+    // Route window.claude.complete through the Next.js /api/tutor endpoint.
+    window.claude = window.claude || {};
+    window.claude.complete = async function ({ messages }) {
+      const res = await fetch("/api/tutor", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages }),
+      });
+      if (!res.ok) throw new Error("tutor request failed");
+      const data = await res.json();
+      return data.completion || "";
+    };
+  </script>
+
+  <script type="text/babel" src="src/data.jsx"></script>
+  <script type="text/babel" src="src/primitives.jsx"></script>
+  <script type="text/babel" src="src/ai-panel.jsx"></script>
+  <script type="text/babel" src="src/concept-map.jsx"></script>
+  <script type="text/babel" src="src/paper-reader.jsx"></script>
+  <script type="text/babel" src="src/review.jsx"></script>
+  <script type="text/babel" src="src/lesson-stages.jsx"></script>
+  <script type="text/babel" src="src/lesson-library.jsx"></script>
+  <script type="text/babel" src="src/generic-stages.jsx"></script>
+  <script type="text/babel" src="src/lesson.jsx"></script>
+  <script type="text/babel" src="src/app.jsx"></script>
+</body>
+</html>
