@@ -17,10 +17,10 @@ An interactive AI tutor that makes Ilya Sutskever's essential AI reading list ac
     npm install
     ```
 
-2.  **Set up OpenAI API:**
-    Create a `.env.local` file in the root of the project and add your OpenAI API key:
+2.  **Set up Anthropic API:**
+    Create a `.env.local` file in the root of the project and add your Anthropic API key:
     ```
-    OPENAI_API_KEY=your-api-key-here
+    ANTHROPIC_API_KEY=your-api-key-here
     ```
 
 3.  **Run the development server:**
@@ -54,7 +54,7 @@ This project is licensed under the MIT License.
 ## 🙏 Acknowledgments
 
 - Inspired by Ilya Sutskever's essential AI reading list.
-- Powered by the OpenAI API.
+- Powered by the Anthropic Claude API.
 - Built with Next.js and Tailwind CSS.
 
 ---
