@@ -1,12 +1,14 @@
 # AI Concepts by Ilya Sutskever
 
-An interactive AI tutor that makes Ilya Sutskever's essential AI reading list accessible through personalized chat conversations.
+An interactive way to work through Ilya Sutskever's essential AI reading list — not as a blog post, but as a browsable constellation of papers with short playable lessons and a Socratic AI tutor alongside.
 
 ## ✨ Features
 
-- **Interactive AI Tutor**: Choose from key AI concepts from Ilya's reading list and engage in a ChatGPT-style conversational learning interface. The AI adapts explanations to your understanding level.
-- **Modern Design**: A clean, minimalist interface that is responsive and works beautifully on all devices.
-- **Smart Learning**: Concepts range from beginner to advanced. Switch topics anytime and access direct links to original research papers.
+- **Concept constellation.** Every paper is a node on a map, clustered by theme (Sequence, Attention, Vision, Theory, Memory & Reasoning, Systems). Node size encodes difficulty; edges are prereqs.
+- **Six-stage lessons.** Each paper opens an interactive lesson: **Hook → Intuition → Playground → Socratic → Assemble → Mastery**. The Transformer lesson is fully built out with custom playgrounds (multi-head attention, Q/K/V intuition, softmax-temperature sweeps); other papers use a shared stage template.
+- **Socratic tutor panel.** An always-available AI tutor on the side. It watches the stage you're on and asks questions instead of dumping answers.
+- **Jump to the source.** Every concept links to its original paper, blog, or course page.
+- **Tweakable.** Theme, density, AI tone, and difficulty can be changed on the fly.
 
 ## 🛠️ Getting Started
 
@@ -31,21 +33,23 @@ An interactive AI tutor that makes Ilya Sutskever's essential AI reading list ac
 4.  **Open in your browser:**
     Visit [http://localhost:3000](http://localhost:3000)
 
-## 📖 Available Concepts
+## 📖 What's on the map
 
-The AI tutor can teach you about a curated list of concepts from Ilya Sutskever's reading list, spanning topics like:
--   **NLP**: Attention, Transformers, and Language Models.
--   **Computer Vision**: AlexNet, Residual Learning, and Dilated Convolutions.
--   **Neural Networks**: Foundational ideas, Regularization, and advanced architectures like GNNs.
--   **Generative Models**: VAEs and other methods for creative AI.
--   **Theory & Blog Posts**: Deep dives into the principles of AI and complexity.
+Papers are grouped into six clusters:
 
-## 🤖 How It Works
+-   **Sequence** — Unreasonable RNNs, Understanding LSTM, RNN Regularization, Order Matters
+-   **Attention** — Bahdanau Attention, Pointer Networks, Attention Is All You Need, The Annotated Transformer
+-   **Vision** — AlexNet, Deep Residual, Identity Mappings, Dilated Convolutions, CS231n
+-   **Theory** — Keeping NNs Simple, MDL Tutorial, Kolmogorov Complexity, Scaling Laws, Complexodynamics, Coffee Automaton, Machine Super Intelligence
+-   **Memory & Reasoning** — Neural Turing Machines, Variational Lossy AE, Relational Reasoning, Relational RNNs, Neural Message Passing
+-   **Systems** — GPipe, Deep Speech 2
 
-1.  **Choose a Topic**: Pick from two randomly suggested concepts or browse the full list.
-2.  **Start the Conversation**: The AI will introduce the concept in an engaging way.
-3.  **Ask Questions**: Dive deeper, request examples, or explore edge cases.
-4.  **Switch Anytime**: Easily change topics if your curiosity leads you elsewhere.
+## 🤖 How it works
+
+1.  **Browse the map.** Pick any node on the constellation. Hover for a card with the paper's author, year, and a link to the original source.
+2.  **Work the stages.** A six-stage lesson guides you from a motivating hook to a visual intuition to a hands-on playground to Socratic questions to an "assemble the block" puzzle to a mastery MCQ.
+3.  **Argue with the tutor.** The side panel is a Socratic tutor, not an explainer. It asks questions back. Click the quick-reply chips or type your own.
+4.  **Go to the source.** Every lesson has a "Paper ↗" button that opens the real paper in a new tab.
 
 ## 📄 License
 
@@ -59,4 +63,4 @@ This project is licensed under the MIT License.
 
 ---
 
-**Built to make AI research accessible through conversation.**
+**Built to make AI research feel like play, not reading.**

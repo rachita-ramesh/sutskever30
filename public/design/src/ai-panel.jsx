@@ -11,8 +11,6 @@ const STAGE_CONTEXT = {
   "socratic":    "The learner is being asked an open Socratic question.",
   "assemble":    "The learner is assembling a transformer block by dragging components into place.",
   "mastery":     "The learner is answering mastery multiple-choice questions.",
-  "reader":      "The learner is reading the original paper with equation annotations.",
-  "review":      "The learner is on the review / mastery dashboard.",
 };
 
 function AIPanel({ open, onClose, stageId, difficulty, conceptName }) {

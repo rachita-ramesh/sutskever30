@@ -1,4 +1,4 @@
-// App shell — orchestrates screens, tweaks, AI panel, and persistence.
+// App shell — orchestrates screens, tweaks, and the AI panel.
 
 const { useState: useStateApp, useEffect: useEffectApp } = React;
 
@@ -18,7 +18,6 @@ function App() {
   });
   const [stageId, setStageId] = useStateApp(() => localStorage.getItem("s30_stage") || "hook");
   const [aiOpen, setAiOpen] = useStateApp(true);
-  const [mastery] = useStateApp(window.DATA.DEFAULT_MASTERY);
   const [tweaks, setTweaks] = useStateApp(DEFAULTS);
   const [tweaksOpen, setTweaksOpen] = useStateApp(false);
   const [editModeActive, setEditModeActive] = useStateApp(false);
@@ -46,22 +45,17 @@ function App() {
   function pickConcept(c) {
     setConcept(c);
     setStageId("hook");
-    setScreen(window.LESSON_LIB[c.id] ? "lesson" : "lesson-stub");
+    setScreen(window.LESSON_LIB && window.LESSON_LIB[c.id] ? "lesson" : "lesson-stub");
   }
 
-  const stageForAI = screen === "home" ? "home"
-    : screen === "review" ? "review"
-    : screen === "reader" ? "reader"
-    : stageId;
+  const stageForAI = screen === "home" ? "home" : stageId;
 
   return (
     <div style={{minHeight:"100vh"}} data-theme={tweaks.theme} data-density={tweaks.density}>
-      {/* Apply theme tweaks via inline style override */}
       <ThemeTweaks tweaks={tweaks}/>
 
       {screen === "home" && (
         <ConceptMap
-          mastery={mastery}
           onPick={pickConcept}
           onOpenAI={() => setAiOpen(true)}
         />
@@ -71,8 +65,6 @@ function App() {
         <Lesson
           concept={concept}
           onBack={() => setScreen("home")}
-          onOpenReader={() => setScreen("reader")}
-          onOpenReview={() => setScreen("review")}
           onOpenAI={() => setAiOpen(true)}
           stageId={stageId}
           onStageChange={setStageId}
@@ -81,19 +73,6 @@ function App() {
 
       {screen === "lesson-stub" && concept && (
         <LessonStub concept={concept} onBack={() => setScreen("home")}/>
-      )}
-
-      {screen === "reader" && (
-        <PaperReader onBack={() => setScreen("lesson")} onOpenAI={() => setAiOpen(true)}/>
-      )}
-
-      {screen === "review" && (
-        <Review
-          mastery={mastery}
-          onBack={() => setScreen("home")}
-          onPick={pickConcept}
-          onOpenAI={() => setAiOpen(true)}
-        />
       )}
 
       <AIPanel
@@ -139,7 +118,6 @@ function ThemeTweaks({ tweaks }) {
         --line: #e5e4df; --line-2: #cdccc5;
       }`;
     }
-    // bright/playful
     if (tweaks.theme === "bright") {
       return `:root {
         --bg: #fffaf0; --bg-2: #fff3dc; --ink: #1a1a1a; --ink-dim: #5e5547; --ink-faint: #a89e8c;
@@ -216,11 +194,18 @@ function LessonStub({ concept, onBack }) {
           {concept.name}
         </h2>
         <p style={{fontSize:15, color:"var(--ink-dim)", lineHeight:1.8, marginBottom:32}}>
-          Every paper in the list gets the full six-stage treatment — hook, intuition, playground, Socratic, assemble, mastery.
-          Only <span style={{color:"var(--amber)"}}>Attention Is All You Need</span> is built out in this prototype.
-          Head back and try that one.
+          This concept doesn't have a built-out lesson yet. You can still read the original source while we finish the interactive version.
         </p>
-        <P.PrimaryBtn onClick={onBack}>back to map <P.IconArrowRight/></P.PrimaryBtn>
+        <div style={{display:"flex", gap:10, justifyContent:"center"}}>
+          <P.PrimaryBtn onClick={onBack}><P.IconArrowLeft/> back to map</P.PrimaryBtn>
+          {concept.paper && (
+            <a href={concept.paper} target="_blank" rel="noopener noreferrer" style={{
+              display:"inline-flex", alignItems:"center", gap:8, padding:"9px 16px",
+              background:"transparent", color:"var(--ink)", border:"1px solid var(--line-2)",
+              borderRadius:9, fontWeight:600, fontSize:13, textDecoration:"none"
+            }}>read source ↗</a>
+          )}
+        </div>
       </div>
     </div>
   );
