@@ -1,69 +1,59 @@
 // ============ CONCEPTS ============
-// 30 papers from Ilya's list, clustered by theme with x/y for constellation layout.
+// Papers from Ilya's list, clustered by theme with x/y for constellation layout.
 // (x,y) in a 0..100 coord space, positioned by cluster.
 
 const CLUSTERS = {
-  "Sequence":    { color: "var(--teal)",  label: "Sequence" },
-  "Attention":   { color: "var(--iris)",  label: "Attention" },
-  "Vision":      { color: "var(--rose)",  label: "Vision" },
-  "Theory":      { color: "var(--amber)", label: "Theory" },
-  "Generative":  { color: "var(--sky)",   label: "Generative" },
-  "Infra":       { color: "var(--lime)",  label: "Infra" },
+  "Sequence":   { color: "var(--teal)",  label: "Sequence" },
+  "Attention":  { color: "var(--iris)",  label: "Attention" },
+  "Vision":     { color: "var(--rose)",  label: "Vision" },
+  "Theory":     { color: "var(--amber)", label: "Theory" },
+  "Memory":     { color: "var(--sky)",   label: "Memory & Reasoning" },
+  "Systems":    { color: "var(--lime)",  label: "Systems" },
 };
 
 const CONCEPTS = [
   // Sequence cluster (top-left)
-  { id:"rnn-eff",     name:"Unreasonable RNNs",     cluster:"Sequence",  x:15, y:22, diff:1, year:2015, auth:"Karpathy",          prereqs:[] },
-  { id:"lstm",        name:"Understanding LSTM",    cluster:"Sequence",  x:26, y:16, diff:1, year:2015, auth:"Olah",              prereqs:["rnn-eff"] },
-  { id:"rnn-reg",     name:"RNN Regularization",    cluster:"Sequence",  x:22, y:32, diff:2, year:2014, auth:"Zaremba+",          prereqs:["lstm"] },
-  { id:"order",       name:"Order Matters",         cluster:"Sequence",  x:36, y:26, diff:3, year:2015, auth:"Vinyals+",          prereqs:["lstm"] },
+  { id:"rnn-eff",     name:"Unreasonable RNNs",         cluster:"Sequence",  x:15, y:22, diff:1, year:2015, auth:"Karpathy",    prereqs:[],            paper:"https://karpathy.github.io/2015/05/21/rnn-effectiveness/" },
+  { id:"lstm",        name:"Understanding LSTM",        cluster:"Sequence",  x:26, y:16, diff:1, year:2015, auth:"Olah",        prereqs:["rnn-eff"],   paper:"https://colah.github.io/posts/2015-08-Understanding-LSTMs/" },
+  { id:"rnn-reg",     name:"RNN Regularization",        cluster:"Sequence",  x:22, y:32, diff:2, year:2014, auth:"Zaremba+",    prereqs:["lstm"],      paper:"https://arxiv.org/abs/1409.2329" },
+  { id:"order",       name:"Order Matters",             cluster:"Sequence",  x:36, y:26, diff:3, year:2015, auth:"Vinyals+",    prereqs:["lstm"],      paper:"https://arxiv.org/abs/1511.06391" },
 
   // Attention cluster (center)
-  { id:"bahdanau",    name:"Bahdanau Attention",    cluster:"Attention", x:46, y:36, diff:3, year:2014, auth:"Bahdanau+",         prereqs:["lstm"] },
-  { id:"pointer",     name:"Pointer Networks",      cluster:"Attention", x:54, y:28, diff:3, year:2015, auth:"Vinyals+",          prereqs:["bahdanau"] },
-  { id:"transformer", name:"Attention Is All You Need", cluster:"Attention", x:56, y:46, diff:3, year:2017, auth:"Vaswani+",      prereqs:["bahdanau"], star:true },
-  { id:"annotated",   name:"Annotated Transformer", cluster:"Attention", x:66, y:40, diff:2, year:2018, auth:"Rush",              prereqs:["transformer"] },
-  { id:"scaling",     name:"Scaling Laws",          cluster:"Attention", x:64, y:54, diff:3, year:2020, auth:"Kaplan+",           prereqs:["transformer"] },
+  { id:"bahdanau",    name:"Bahdanau Attention",        cluster:"Attention", x:46, y:36, diff:3, year:2014, auth:"Bahdanau+",   prereqs:["lstm"],      paper:"https://arxiv.org/abs/1409.0473" },
+  { id:"pointer",     name:"Pointer Networks",          cluster:"Attention", x:54, y:28, diff:3, year:2015, auth:"Vinyals+",    prereqs:["bahdanau"],  paper:"https://arxiv.org/abs/1506.03134" },
+  { id:"transformer", name:"Attention Is All You Need", cluster:"Attention", x:56, y:46, diff:3, year:2017, auth:"Vaswani+",    prereqs:["bahdanau"],  paper:"https://arxiv.org/abs/1706.03762", star:true },
+  { id:"annotated",   name:"Annotated Transformer",     cluster:"Attention", x:66, y:40, diff:2, year:2018, auth:"Rush",        prereqs:["transformer"], paper:"https://nlp.seas.harvard.edu/annotated-transformer/" },
 
   // Vision cluster (lower-left)
-  { id:"alexnet",     name:"AlexNet",               cluster:"Vision",    x:18, y:56, diff:2, year:2012, auth:"Krizhevsky+",       prereqs:[] },
-  { id:"resnet",      name:"Deep Residual",         cluster:"Vision",    x:28, y:68, diff:2, year:2015, auth:"He+",               prereqs:["alexnet"] },
-  { id:"identity",    name:"Identity Mappings",     cluster:"Vision",    x:38, y:78, diff:3, year:2016, auth:"He+",               prereqs:["resnet"] },
-  { id:"dilated",     name:"Dilated Convolutions",  cluster:"Vision",    x:14, y:76, diff:2, year:2015, auth:"Yu+",               prereqs:["alexnet"] },
-  { id:"cs231n",      name:"CS231n",                cluster:"Vision",    x:8,  y:64, diff:1, year:2015, auth:"Stanford",          prereqs:[] },
+  { id:"alexnet",     name:"AlexNet",                   cluster:"Vision",    x:18, y:56, diff:2, year:2012, auth:"Krizhevsky+", prereqs:[],            paper:"https://papers.nips.cc/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html" },
+  { id:"resnet",      name:"Deep Residual",             cluster:"Vision",    x:28, y:68, diff:2, year:2015, auth:"He+",         prereqs:["alexnet"],   paper:"https://arxiv.org/abs/1512.03385" },
+  { id:"identity",    name:"Identity Mappings",         cluster:"Vision",    x:38, y:78, diff:3, year:2016, auth:"He+",         prereqs:["resnet"],    paper:"https://arxiv.org/abs/1603.05027" },
+  { id:"dilated",     name:"Dilated Convolutions",      cluster:"Vision",    x:14, y:76, diff:2, year:2015, auth:"Yu+",         prereqs:["alexnet"],   paper:"https://arxiv.org/abs/1511.07122" },
+  { id:"cs231n",      name:"CS231n",                    cluster:"Vision",    x:8,  y:64, diff:1, year:2015, auth:"Stanford",    prereqs:[],            paper:"https://cs231n.stanford.edu/" },
 
   // Theory cluster (right)
-  { id:"mdl-simple",  name:"Keeping NNs Simple",    cluster:"Theory",    x:82, y:22, diff:3, year:1993, auth:"Hinton+",           prereqs:[] },
-  { id:"mdl-tut",     name:"MDL Tutorial",          cluster:"Theory",    x:90, y:32, diff:3, year:2004, auth:"Grünwald",          prereqs:[] },
-  { id:"kolmo",       name:"Kolmogorov Complexity", cluster:"Theory",    x:86, y:48, diff:3, year:2017, auth:"Shen+",             prereqs:["mdl-tut"] },
-  { id:"complexo",    name:"Complexodynamics",      cluster:"Theory",    x:94, y:62, diff:3, year:2011, auth:"Aaronson",          prereqs:[] },
-  { id:"coffee",      name:"Coffee Automaton",      cluster:"Theory",    x:82, y:70, diff:3, year:2014, auth:"Aaronson+",         prereqs:["complexo"] },
-  { id:"msi",         name:"Machine Super Intelligence", cluster:"Theory", x:76, y:14, diff:3, year:2008, auth:"Legg",           prereqs:[] },
+  { id:"mdl-simple",  name:"Keeping NNs Simple",        cluster:"Theory",    x:82, y:22, diff:3, year:1993, auth:"Hinton+",     prereqs:[],            paper:"https://www.cs.toronto.edu/~hinton/absps/colt93.pdf" },
+  { id:"mdl-tut",     name:"MDL Tutorial",              cluster:"Theory",    x:90, y:32, diff:3, year:2004, auth:"Grünwald",    prereqs:[],            paper:"https://arxiv.org/abs/math/0406077" },
+  { id:"kolmo",       name:"Kolmogorov Complexity",     cluster:"Theory",    x:86, y:44, diff:3, year:2017, auth:"Shen+",       prereqs:["mdl-tut"],   paper:"https://www.lirmm.fr/~ashen/kolmbook-eng-scan.pdf" },
+  { id:"scaling",     name:"Scaling Laws",              cluster:"Theory",    x:78, y:54, diff:3, year:2020, auth:"Kaplan+",     prereqs:[],            paper:"https://arxiv.org/abs/2001.08361" },
+  { id:"complexo",    name:"Complexodynamics",          cluster:"Theory",    x:94, y:62, diff:3, year:2011, auth:"Aaronson",    prereqs:[],            paper:"https://www.scottaaronson.com/blog/?p=762" },
+  { id:"coffee",      name:"Coffee Automaton",          cluster:"Theory",    x:82, y:70, diff:3, year:2014, auth:"Aaronson+",   prereqs:["complexo"],  paper:"https://arxiv.org/abs/1405.6903" },
+  { id:"msi",         name:"Machine Super Intelligence",cluster:"Theory",    x:76, y:14, diff:3, year:2008, auth:"Legg",        prereqs:[],            paper:"https://www.vetta.org/documents/Machine_Super_Intelligence.pdf" },
 
-  // Generative cluster (bottom)
-  { id:"vlae",        name:"Variational Lossy AE",  cluster:"Generative", x:50, y:82, diff:3, year:2016, auth:"Chen+",            prereqs:[] },
-  { id:"relrea",      name:"Relational Reasoning",  cluster:"Generative", x:62, y:74, diff:3, year:2017, auth:"Santoro+",         prereqs:[] },
-  { id:"relrnn",      name:"Relational RNNs",       cluster:"Generative", x:72, y:84, diff:3, year:2018, auth:"Santoro+",         prereqs:["relrea"] },
-  { id:"msg",         name:"Neural Message Passing",cluster:"Generative", x:60, y:90, diff:3, year:2017, auth:"Gilmer+",          prereqs:[] },
+  // Memory & Reasoning cluster (bottom-center)
+  { id:"ntm",         name:"Neural Turing Machines",    cluster:"Memory",    x:46, y:74, diff:3, year:2014, auth:"Graves+",     prereqs:[],            paper:"https://arxiv.org/abs/1410.5401" },
+  { id:"vlae",        name:"Variational Lossy AE",      cluster:"Memory",    x:50, y:86, diff:3, year:2016, auth:"Chen+",       prereqs:[],            paper:"https://arxiv.org/abs/1611.02731" },
+  { id:"relrea",      name:"Relational Reasoning",      cluster:"Memory",    x:62, y:74, diff:3, year:2017, auth:"Santoro+",    prereqs:[],            paper:"https://arxiv.org/abs/1706.01427" },
+  { id:"relrnn",      name:"Relational RNNs",           cluster:"Memory",    x:70, y:84, diff:3, year:2018, auth:"Santoro+",    prereqs:["relrea"],    paper:"https://arxiv.org/abs/1806.01822" },
+  { id:"msg",         name:"Neural Message Passing",    cluster:"Memory",    x:60, y:90, diff:3, year:2017, auth:"Gilmer+",     prereqs:[],            paper:"https://arxiv.org/abs/1704.01212" },
 
-  // Infra cluster (far-right-bottom)
-  { id:"ntm",         name:"Neural Turing Machines",cluster:"Infra",      x:42, y:58, diff:3, year:2014, auth:"Graves+",          prereqs:[] },
-  { id:"gpipe",       name:"GPipe",                 cluster:"Infra",      x:88, y:84, diff:3, year:2018, auth:"Huang+",           prereqs:[] },
-  { id:"ds2",         name:"Deep Speech 2",         cluster:"Infra",      x:44, y:12, diff:2, year:2015, auth:"Amodei+",          prereqs:[] },
+  // Systems cluster (far-right-bottom + one outlier)
+  { id:"gpipe",       name:"GPipe",                     cluster:"Systems",   x:88, y:84, diff:3, year:2018, auth:"Huang+",      prereqs:[],            paper:"https://arxiv.org/abs/1811.06965" },
+  { id:"ds2",         name:"Deep Speech 2",             cluster:"Systems",   x:44, y:12, diff:2, year:2015, auth:"Amodei+",     prereqs:[],            paper:"https://arxiv.org/abs/1512.02595" },
 ];
 
-// Current user progress (in-memory state, could persist)
-const DEFAULT_MASTERY = {
-  "rnn-eff":    { progress: 0.9, streak: 4, lastSeen: "2d" },
-  "lstm":       { progress: 0.75, streak: 2, lastSeen: "5d" },
-  "alexnet":    { progress: 0.55, streak: 1, lastSeen: "1w" },
-  "resnet":     { progress: 0.3, streak: 0, lastSeen: "2w" },
-  "bahdanau":   { progress: 0.2, streak: 0, lastSeen: "-" },
-  "transformer":{ progress: 0.0, streak: 0, lastSeen: "-" },
-};
-
 // ============ ATTENTION LESSON ============
-// Reimagined as stages, each with a distinct interaction type.
+// Stage definitions used by the Transformer lesson.
 const LESSON = {
   id: "transformer",
   title: "Attention Is All You Need",
@@ -113,20 +103,6 @@ function attnWeights(headId, qi, N) {
   return w.map(x=>x/s);
 }
 
-// Paper excerpt for annotated reader
-const PAPER_EXCERPT = [
-  { kind:"h", text:"3.2 Attention" },
-  { kind:"p", text:"An attention function can be described as mapping a query and a set of key-value pairs to an output, where the query, keys, values, and output are all vectors." },
-  { kind:"p", text:"The output is computed as a weighted sum of the values, where the weight assigned to each value is computed by a compatibility function of the query with the corresponding key." },
-  { kind:"h", text:"3.2.1 Scaled Dot-Product Attention" },
-  { kind:"p", text:"We call our particular attention 'Scaled Dot-Product Attention'. The input consists of queries and keys of dimension $d_k$, and values of dimension $d_v$." },
-  { kind:"eq", text:"Attention(Q, K, V) = softmax( Q Kᵀ / √dₖ ) V",
-    plain:"For every query, dot it with every key to get a score. Divide by √dₖ so the softmax doesn't saturate. Softmax turns scores into weights that sum to 1. Weighted-sum the values."
-  },
-  { kind:"p", text:"The two most commonly used attention functions are additive attention, and dot-product (multiplicative) attention. Dot-product attention is identical to our algorithm, except for the scaling factor of 1/√dₖ." },
-  { kind:"p", text:"While for small values of $d_k$ the two mechanisms perform similarly, additive attention outperforms dot product attention without scaling for larger values of $d_k$. We suspect that for large values of $d_k$, the dot products grow large in magnitude, pushing the softmax function into regions where it has extremely small gradients." },
-];
-
 // Socratic questions
 const SOCRATIC = [
   {
@@ -169,4 +145,4 @@ const MASTERY_QS = [
   },
 ];
 
-window.DATA = { CLUSTERS, CONCEPTS, DEFAULT_MASTERY, LESSON, ATTN_SENT, HEADS, attnWeights, PAPER_EXCERPT, SOCRATIC, MASTERY_QS };
+window.DATA = { CLUSTERS, CONCEPTS, LESSON, ATTN_SENT, HEADS, attnWeights, SOCRATIC, MASTERY_QS };

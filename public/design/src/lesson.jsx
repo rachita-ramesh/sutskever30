@@ -2,7 +2,7 @@
 
 const { useState: useStateL } = React;
 
-function Lesson({ concept, onBack, onOpenReader, onOpenReview, onOpenAI, stageId, onStageChange }) {
+function Lesson({ concept, onBack, onOpenAI, stageId, onStageChange }) {
   const { LESSON } = window.DATA;
   const stages = LESSON.stages;
   const idx = Math.max(0, stages.findIndex(s => s.id === stageId));
@@ -56,8 +56,13 @@ function Lesson({ concept, onBack, onOpenReader, onOpenReview, onOpenAI, stageId
         }
         right={
           <>
-            <P.GhostBtn onClick={onOpenReader}><P.IconPaper/> Paper</P.GhostBtn>
-            <P.GhostBtn onClick={onOpenReview}><P.IconGraph/> Review</P.GhostBtn>
+            {concept.paper && (
+              <a href={concept.paper} target="_blank" rel="noopener noreferrer" style={{
+                display:"inline-flex", alignItems:"center", gap:6, padding:"7px 11px",
+                border:"1px solid var(--line-2)", color:"var(--ink)",
+                borderRadius:8, fontSize:13, textDecoration:"none"
+              }}><P.IconPaper/> Paper ↗</a>
+            )}
             <P.GhostBtn onClick={onOpenAI} active><P.IconBrain/> Tutor</P.GhostBtn>
           </>
         }
@@ -112,7 +117,7 @@ function Lesson({ concept, onBack, onOpenReader, onOpenReview, onOpenAI, stageId
           </div>
           <P.GhostBtn onClick={() => go(-1)}><P.IconArrowLeft/> Back</P.GhostBtn>
           {idx === stages.length - 1 ? (
-            <P.PrimaryBtn onClick={onOpenReview}>finish & review <P.IconArrowRight/></P.PrimaryBtn>
+            <P.PrimaryBtn onClick={onBack}>back to map <P.IconArrowRight/></P.PrimaryBtn>
           ) : (
             <P.PrimaryBtn onClick={() => go(1)}>next <P.IconArrowRight/></P.PrimaryBtn>
           )}
